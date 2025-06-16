@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A&amp;A Property Advisors and Developers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        nav .logo h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a, nav ul li button {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        nav ul li a:hover, nav ul li button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btns button {
+            background-color: #f1c40f;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .nav-btns button:hover {
+            background-color: #e0b10f;
+        }
+
+        .hero {
+            background-image: linear-gradient(to bottom, #3498db, #f9f9f9);
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        /* Updated search form container style for horizontal layout */
+        .hero form#searchForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Style inputs, selects and button */
+        #locationSelect, #propertyTypeSelect, #searchInput {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            font-family: inherit;
+            box-sizing: border-box;
+            min-width: 130px;
+        }
+
+        #searchInput {
+            flex: 1 1 200px;
+        }
+
+        #searchButton {
+            background-color: #f1c40f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            flex-shrink: 0;
+        }
+
+        #searchButton:hover {
+            background-color: #d1ac0c;
+        }
+
+        .featured-properties {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .featured-properties h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .property-card {
+            background-color: #B2E6CE;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .property-card:hover {
+            background-color: #7FB2A0;
+        }
+
+        .property-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .property-card h3 {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .property-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .add-property-btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 20px auto 40px auto;
+            display: block;
+            width: 300px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .add-property-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .add-property-form {
+            display: none;
+            max-width: 600px;
+            margin: 20px auto 60px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        .add-property-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .add-property-form button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 18px;
+            width: 100%;
+            font-family: inherit;
+            margin-top: 10px;
+        }
+
+        .add-property-form button:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            user-select: text;
+        }
+
+        footer h3 {
+            margin: 0 0 10px 0;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            display: inline-block;
+            text-align: left;
+        }
+
+        footer ul li {
+            margin: 5px 0;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .modal-content .images-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: default;
+            user-select: none;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                gap: 15px;
+            }
+            .hero {
+                padding: 40px 10px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero form#searchForm {
+                flex-direction: column;
+                gap: 12px;
+                max-width: 400px;
+            }
+            #searchInput,
+            #locationSelect,
+            #propertyTypeSelect,
+            #searchButton {
+                width: 100%;
+                min-width: auto;
+            }
+            .add-property-btn, .add-property-form {
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>A&amp;A Property Advisors and Developers</h1>
+            </div>
+            <ul>
+                <li>
+                    <button onclick="window.location.href='file:///C:/Users/Fine Computers 62/Desktop/sites/A&A Property Advisor and Develops index.html'" aria-label="Open Home page">Home</button>
+                </li>
+                <li><a href="#">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+                <li>
+                    <button onclick="window.location.href='file:///C:/Users/Fine Computers 62/Desktop/sites/about us index.html'" aria-label="Open About Us page">About</button>
+                </li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-btns">
+                <button>Login</button>
+                <button>Register</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Find Your Dream Home</h1>
+            <form id="searchForm" aria-label="Property search form">
+                <input type="search" id="searchInput" placeholder="Search properties..." aria-label="Search properties" />
+                <select id="locationSelect" aria-label="Select location">
+                    <option value="">Location</option>
+                    <option value="sargodha">Sargodha</option>
+                    <option value="lahore">Lahore</option>
+                </select>
+                <select id="propertyTypeSelect" aria-label="Select property type">
+                    <option value="">Property Type</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="house">House</option>
+                </select>
+                <button type="submit" id="searchButton" aria-label="Search properties">Search</button>
+            </form>
+        </section>
+
+        <section class="featured-properties" aria-label="Featured properties section">
+            <h2>Featured Properties</h2>
+            <div class="property-grid" id="propertyGrid" aria-live="polite" aria-relevant="additions"></div>
+            <button class="add-property-btn" onclick="toggleAddPropertyForm()" aria-expanded="false" aria-controls="addPropertyForm">
+                Add Property
+            </button>
+            <div class="add-property-form" id="addPropertyForm" aria-hidden="true">
+                <h3>Add New Property</h3>
+                <input type="text" id="propertyName" placeholder="Property Name" required aria-required="true" aria-label="Property Name" />
+                <input type="text" id="propertyLocation" placeholder="Location" required aria-required="true" aria-label="Property Location" />
+                <input type="text" id="propertySize" placeholder="Size (e.g., 5 marla)" required aria-required="true" aria-label="Property Size" />
+                <input type="text" id="propertyPrice" placeholder="Price" required aria-required="true" aria-label="Property Price" />
+                <input type="url" id="propertyImage" placeholder="Front Picture URL" required aria-required="true" aria-label="Front Picture URL" />
+                <textarea id="additionalImages" placeholder="Additional Images URLs, separated by commas" aria-label="Additional Images URLs"></textarea>
+                <button type="button" onclick="addProperty()">Add Property</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for displaying more images -->
+    <div id="myModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalPropertyName" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close" role="button" tabindex="0" aria-label="Close modal" onclick="closeModal()" onkeydown="(event.key==='Enter' || event.key===' ') && closeModal()">&times;</span>
+            <h2 id="modalPropertyName"></h2>
+            <div id="modalImages" class="images-container" tabindex="0"></div>
+        </div>
+    </div>
+
+    <footer>
+        <h3>About Us</h3>
+        <p>A&amp;A Property Advisors and Developers is a leading real estate company.</p>
+        <p>Contact:</p>
+        <ul>
+            <li>Arshad Ali</li>
+            <li>WhatsApp: 0305-6405683</li>
+            <li>Phone: 0305-6405683</li>
+            <li>Ansar Javed</li>
+            <li>WhatsApp: 0317-1511961</li>
+            <li>Phone: 0320-5001662</li>
+        </ul>
+    </footer>
+
+    <script>
+        const predefinedProperties = [
+            {
+                name: "Cozy House",
+                location: "st no.3, Muhafiz town, Sargodha, Punjab",
+                size: "5 marla, 1400 sqft",
+                price: "2.5 crore",
+                image: "C:/Users/Fine Computers 62/Desktop/sites/cozy house.jpg",
+                additionalImages: [
+                    "E:/videos/cozy_house_1.jpg",
+                    "E:/videos/cozy_house_2.jpg",
+                    "E:/videos/cozy_house_3.jpg",
+					"https://placehold.co/600x400?text=Cozy+House+4",
+                    "https://placehold.co/600x400?text=Cozy+House+5",
+                    "https://placehold.co/600x400?text=Cozy+House+6",
+                    "https://placehold.co/600x400?text=Cozy+House+7",
+                    "https://placehold.co/600x400?text=Cozy+House+8",
+                    "https://placehold.co/600x400?text=Cozy+House+9",
+                    "https://placehold.co/600x400?text=Cozy+House+10",
+                    "https://placehold.co/600x400?text=Cozy+House+11",
+                    "https://placehold.co/600x400?text=Cozy+House+12",
+                    "https://placehold.co/600x400?text=Cozy+House+13",
+                    "https://placehold.co/600x400?text=Cozy+House+14",
+                    "https://placehold.co/600x400?text=Cozy+House+15",
+                    "https://placehold.co/600x400?text=Cozy+House+16",
+                    "https://placehold.co/600x400?text=Cozy+House+17",
+                    "https://placehold.co/600x400?text=Cozy+House+18",
+                    "https://placehold.co/600x400?text=Cozy+House+19",
+                    "https://placehold.co/600x400?text=Cozy+House+20"
+                ]
+            },
+            {
+                name: "Modern Style Home",
+                location: "St No.6, Model Town, Sargodha, Punjab",
+                size: "7.3 marla, 2000 sqft",
+                price: "3 crore 50 lacs",
+                image: "C:/Users/Fine Computers 62/Desktop/sites/.nlhlkal.jpg",
+                additionalImages: [
+                    "E:/videos/modern_home_1.jpg",
+                    "E:/videos/modern_home_2.jpg",
+                    "E:/videos/modern_home_3.jpg",
+					"https://placehold.co/600x400?text=Cozy+House+4",
+                    "https://placehold.co/600x400?text=Cozy+House+5",
+                    "https://placehold.co/600x400?text=Cozy+House+6",
+                    "https://placehold.co/600x400?text=Cozy+House+7",
+                    "https://placehold.co/600x400?text=Cozy+House+8",
+                    "https://placehold.co/600x400?text=Cozy+House+9",
+                    "https://placehold.co/600x400?text=Cozy+House+10",
+                    "https://placehold.co/600x400?text=Cozy+House+11",
+                    "https://placehold.co/600x400?text=Cozy+House+12",
+                    "https://placehold.co/600x400?text=Cozy+House+13",
+                    "https://placehold.co/600x400?text=Cozy+House+14",
+                    "https://placehold.co/600x400?text=Cozy+House+15",
+                    "https://placehold.co/600x400?text=Cozy+House+16",
+                    "https://placehold.co/600x400?text=Cozy+House+17",
+                    "https://placehold.co/600x400?text=Cozy+House+18",
+                    "https://placehold.co/600x400?text=Cozy+House+19",
+                    "https://placehold.co/600x400?text=Cozy+House+20"
+                ]
+            }
+        ];
+
+        function renderProperties(properties) {
+            const propertyGrid = document.getElementById('propertyGrid');
+            propertyGrid.innerHTML = '';
+            if (properties.length === 0) {
+                propertyGrid.innerHTML = '<p style="text-align:center; color:#777;">No properties found.</p>';
+                return;
+            }
+            properties.forEach(property => {
+                const newPropertyCard = document.createElement('div');
+                newPropertyCard.className = 'property-card';
+                newPropertyCard.innerHTML = `
+                    <img src="${property.image}" alt="Image of ${property.name}" onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Available';" />
+                    <h3>${property.name}</h3>
+                    <p>${property.location}</p>
+                    <p>Demand: ${property.price}</p>
+                `;
+                newPropertyCard.onclick = () => openModal(property);
+                propertyGrid.appendChild(newPropertyCard);
+            });
+        }
+
+        window.onload = function () {
+            const storedProperties = JSON.parse(localStorage.getItem('properties')) || [];
+            const allProperties = [...predefinedProperties, ...storedProperties];
+            renderProperties(allProperties);
+        };
+
+        document.getElementById('searchForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+            const location = document.getElementById('locationSelect').value.trim().toLowerCase();
+            const propertyType = document.getElementById('propertyTypeSelect').value.trim().toLowerCase();
+
+            const storedProperties = JSON.parse(localStorage.getItem('properties')) || [];
+            const allProperties = [...predefinedProperties, ...storedProperties];
+
+            const filteredProperties = allProperties.filter(property => {
+                const matchesSearch = searchQuery ? (
+                    property.name.toLowerCase().includes(searchQuery) ||
+                    property.location.toLowerCase().includes(searchQuery)
+                ) : true;
+
+                const matchesLocation = location ? property.location.toLowerCase().includes(location) : true;
+
+                // Property Type is checked against size field here as an example (since no explicit type in data)
+                const matchesType = propertyType ? property.size.toLowerCase().includes(propertyType) : true;
+
+                return matchesSearch && matchesLocation && matchesType;
+            });
+
+            renderProperties(filteredProperties);
+        });
+
+        function toggleAddPropertyForm() {
+            const form = document.getElementById('addPropertyForm');
+            const btn = document.querySelector('.add-property-btn');
+            if (form.style.display === 'block') {
+                form.style.display = 'none';
+                btn.setAttribute('aria-expanded', 'false');
+                form.setAttribute('aria-hidden', 'true');
+            } else {
+                form.style.display = 'block';
+                btn.setAttribute('aria-expanded', 'true');
+                form.setAttribute('aria-hidden', 'false');
+            }
+        }
+
+        function addProperty() {
+            const name = document.getElementById('propertyName').value.trim();
+            const location = document.getElementById('propertyLocation').value.trim();
+            const size = document.getElementById('propertySize').value.trim();
+            const price = document.getElementById('propertyPrice').value.trim();
+            const image = document.getElementById('propertyImage').value.trim();
+            const additionalImagesText = document.getElementById('additionalImages').value.trim();
+
+            if (!name || !location || !size || !price || !image) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            let additionalImages = [];
+            if (additionalImagesText) {
+                additionalImages = additionalImagesText.split(',').map(url => url.trim()).filter(url => url.length > 0);
+            }
+
+            const property = { name, location, size, price, image, additionalImages };
+            const storedProperties = JSON.parse(localStorage.getItem('properties')) || [];
+            storedProperties.push(property);
+            localStorage.setItem('properties', JSON.stringify(storedProperties));
+
+            renderProperties([...predefinedProperties, ...storedProperties]);
+
+            document.getElementById('propertyName').value = '';
+            document.getElementById('propertyLocation').value = '';
+            document.getElementById('propertySize').value = '';
+            document.getElementById('propertyPrice').value = '';
+            document.getElementById('propertyImage').value = '';
+            document.getElementById('additionalImages').value = '';
+
+            toggleAddPropertyForm();
+        }
+
+        function openModal(property) {
+            const modal = document.getElementById("myModal");
+            const modalPropertyName = document.getElementById("modalPropertyName");
+            const modalImages = document.getElementById("modalImages");
+
+            modalPropertyName.textContent = property.name;
+            modalImages.innerHTML = '';
+
+            let images = property.additionalImages && property.additionalImages.length > 0 
+                ? property.additionalImages 
+                : Array(15).fill(property.image);
+
+            images.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Image of ${property.name}`;
+                img.onerror = () => {
+                    img.src = 'https://placehold.co/600x400?text=Image+Not+Available';
+                };
+                modalImages.appendChild(img);
+            });
+
+            modal.style.display = "block";
+            modal.setAttribute("aria-hidden", "false");
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "none";
+            modal.setAttribute("aria-hidden", "true");
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+
+        window.addEventListener('keydown', function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.key === "Escape" && modal.style.display === "block") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
+

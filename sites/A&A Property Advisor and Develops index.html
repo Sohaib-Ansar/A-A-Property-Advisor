@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&A Property Advisors and Developers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-section {
+            background-image: url('C:/Users/Fine Computers 62/Desktop/sites/modern black.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            color: #fff;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Gradient background */
+        .hero-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)); /* Light gradient */
+        }
+
+        h1 {
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
+        }
+
+        .tab-buttons {
+            position: absolute;
+            bottom: 60px; /* Move buttons up */
+            left: 20px;
+        }
+
+        .tab-btn {
+            padding: 20px 40px; /* Increased padding */
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff6f00, #ffcc00);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            font-size: 20px; /* Increased font size */
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+		.tab-buttons {
+            position: absolute;
+            bottom: 60px; /* Reduced bottom spacing for "not too bottom" */
+            Left: 35px;   /* Left aligned with 20px margin */
+            z-index: 2;
+            display: flex;
+            flex-direction: column; /* Stack vertically */
+            gap: 16px; /* Vertical spacing between buttons */
+        }
+
+        .tab-btn:hover {
+            background: linear-gradient(45deg, #ffcc00, #ff6f00);
+            transform: translateY(-2px);
+        }
+
+        .testimonial-card {
+            background-color: #4169E1;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+		.testimonials {
+            padding: 40px 20px 80px 20px;
+            background-color: #f9f9f9;
+            color: #333;
+            flex-grow: 1;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-grid {
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background-color: #4169E1;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-card p {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .testimonial-card span {
+            display: block;
+            font-style: italic;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .comment-section {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .comment-section h3 {
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .name-input,
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            resize: vertical;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .submit-comment {
+            margin-top: 15px;
+            padding: 12px 24px;
+            background-color: #4169E1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-comment:hover {
+            background-color: #365899;
+        }
+
+        .footer-section {
+            color: white;
+            padding: 20px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        .footer-grid {
+            font-size: 14px; /* Decrease font size */
+            padding: 10px; /* Decrease padding */
+        }
+
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment-input, .name-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .submit-comment {
+            padding: 10px 20px;
+            background-color: #4169E1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-comment:hover {
+            background-color: #365899;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="hero-gradient"></div> <!-- Gradient background -->
+        <div class="hero-content">
+            <h1>A&A Property Advisors and Developers</h1>
+            <p>Developed by Arshad Ali and Ansar Javed</p>
+            <div class="tab-buttons">
+                <button class="tab-btn" onclick="window.location.href='C:/Users/Fine Computers 62/Desktop/sites/weppage houses index.html'">Houses</button>
+                <button class="tab-btn" onclick="window.location.href='C:/Users/Fine Computers 62/Desktop/sites/plots index.html'">Plots</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-grid" id="testimonial-grid">
+            <div class="testimonial-card">
+                <p>A&A Property Advisors and Developers helped me find my dream home!</p>
+                <span>— M. Arsalan</span>
+            </div>
+            <div class="testimonial-card">
+                <p>Excellent service and great properties!</p>
+                <span>— Malik Ibrar</span>
+            </div>
+        </div>
+        
+        <div class="comment-section">
+            <h3>Leave a Comment</h3>
+            <input type="text" class="name-input" id="name-input" placeholder="Your Name">
+            <textarea class="comment-input" id="comment-input" rows="4" placeholder="Write your comment here..."></textarea>
+            <button class="submit-comment" onclick="submitComment()">Submit</button>
+        </div>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-grid">
+            <h3>About Us</h3>
+            <p>A&A Property Advisors and Developers is a leading real estate company.</p>
+            <p>Contact:</p>
+            <ul>
+			<li>Arshad Ali</li>
+			<li> WhatsApp: 0305-6405683</li>
+			<li> Phone: 0305-6405683</li>
+			<li> Ansar Javed</li>
+                <li>WhatsApp: 0317-1511961</li>
+                <li>Phone: 0320-5001662</li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        function submitComment() {
+            const nameInput = document.getElementById('name-input');
+            const commentInput = document.getElementById('comment-input');
+            const nameText = nameInput.value.trim() || "Anonymous"; // Default to Anonymous if empty
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                const testimonialGrid = document.getElementById('testimonial-grid');
+                const newComment = document.createElement('div');
+                newComment.className = 'testimonial-card';
+                const timestamp = new Date().toLocaleString(); // Get current date and time
+                newComment.innerHTML = `<p>${commentText}</p><span>— ${nameText} on ${timestamp}</span>`;
+                testimonialGrid.appendChild(newComment);
+                commentInput.value = ''; // Clear the input field
+                nameInput.value = ''; // Clear the name field
+            } else {
+                alert('Please enter a comment before submitting.');
+            }
+        }
+    </script>
+	
+</body>
+</html>
